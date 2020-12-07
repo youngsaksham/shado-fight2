@@ -69,7 +69,7 @@ enymy1WinImg = loadAnimation("image/enymy/enymy1/enymyWin/enymy1.png","image/eny
 enymy2DownImg = loadAnimation("image/enymy/enymy2/enymyDown/enymy1.PNG","image/enymy/enymy2/enymyDown/enymy2.PNG","image/enymy/enymy2/enymyDown/enymy3.PNG","image/enymy/enymy2/enymyDown/enymy4.PNG","image/enymy/enymy2/enymyDown/enymy5.PNG")
 enymy2KickImg = loadAnimation("image/enymy/enymy2/enymyKick/enymy1.PNG","image/enymy/enymy2/enymyKick/enymy2.PNG","image/enymy/enymy2/enymyKick/enymy3.PNG","image/enymy/enymy2/enymyKick/enymy4.PNG");
 enymy2PunchImg = loadAnimation("image/enymy/enymy2/enymyPunch/enymy1.png","image/enymy/enymy2/enymyPunch/enymy2.png","image/enymy/enymy2/enymyPunch/enymy3.png","image/enymy/enymy2/enymyPunch/enymy4.png","image/enymy/enymy2/enymyPunch/enymy5.png");
-enymy2SmashImg = loadAnimation("image/enymy/enymy2/enymySmash/enymy1.PNG","image/enymy/enymy2/enymySmash/enymy2.PNG","image/enymy/enymy2/enymySmash/enymy3.PNG","image/enymy/enymy2/enymySmash/enymy4.PNG","image/enymy/enymy2/enymySmash/enymy5.PNG","image/enymy/enymy2/enymySmash/enymy6.PNG","image/enymy/enymy2/enymySmash/enymy7.PNG","image/enymy/enymy2/enymySmash/enymy8.PNG")
+enymy2SmashImg = loadAnimation("image/enymy/enymy2/enymySmash/enymy1.PNG","image/enymy/enymy2/enymySmash/enymy2.PNG","image/enymy/enymy2/enymySmash/enymy3.PNG","image/enymy/enymy2/enymySmash/enymy4.PNG","image/enymy/enymy2/enymySmash/enymy5.PNG","image/enymy/enymy2/enymySmash/enymy6.PNG","image/enymy/enymy2/enymySmash/enymy7.PNG")
 enymy2WinImg = loadAnimation("image/enymy/enymy2/enymyWin/enymy1.PNG","image/enymy/enymy2/enymyWin/enymy2.PNG","image/enymy/enymy2/enymyWin/enymy3.PNG","image/enymy/enymy2/enymyWin/enymy4.PNG")
 
 playerStart = loadAnimation("image/player/punchPlayer/punch1.png","image/player/punchPlayer/punch1.png");
@@ -444,7 +444,7 @@ hp2.visible = true;
 healthSpriteE1.visible = true;
 healthSpriteP.visible = true;
 text("score : "+score,displayWidth/2,200);
-textSize = 32;
+textSize("32");
 }
 
 if(gameState === 3){
