@@ -211,21 +211,59 @@ healthSpriteE1 = createSprite(displayWidth-150,100,20,20);
 healthSpriteE1.addImage(healthImg);
 healthSpriteE1.scale = 0.5;
 
+healthSpriteE2 = createSprite(displayWidth-150,100,20,20);
+healthSpriteE2.addImage(healthImg);
+healthSpriteE2.scale = 0.5;
+
+healthSpriteE3 = createSprite(displayWidth-150,100,20,20);
+healthSpriteE3.addImage(healthImg);
+healthSpriteE3.scale = 0.5;
+
+healthSpriteE4 = createSprite(displayWidth-150,100,20,20);
+healthSpriteE4.addImage(healthImg);
+healthSpriteE4.scale = 0.5;
+
+healthSpriteE5 = createSprite(displayWidth-150,100,20,20);
+healthSpriteE5.addImage(healthImg);
+healthSpriteE5.scale = 0.5;
+
 hpE1 = map(healthE1,0,100,0,width);
-hpP = map(healthP,0,100,0,width); 
+hpE2 = map(healthE2,0,100,0,width);
+hpE3 = map(healthE3,0,100,0,width);
+hpE4 = map(healthE4,0,100,0,width);
+hpE5 = map(healthE5,0,100,0,width);
+hpP = map(healthP,0,100,0,width);
 
 hp1 = createSprite(165,90,hpP,30);
 hp1.shapeColor = "red";
 
 hp2 = createSprite(displayWidth-137,90,hpE1,30);
 hp2.shapeColor = "red";
+
+hp3 = createSprite(displayWidth-137,90,hpE1,30);
+hp3.shapeColor = "red";
+
+hp4 = createSprite(displayWidth-137,90,hpE1,30);
+hp4.shapeColor = "red";
+
+hp5 = createSprite(displayWidth-137,90,hpE1,30);
+hp5.shapeColor = "red";
+
+hp6 = createSprite(displayWidth-137,90,hpE1,30);
+hp6.shapeColor = "red";
+
 }
 
 function draw() {
   background(255,255,255);
 //Hide();
-hp2.width = healthE1+healthE1;
 hp1.width = healthP+healthP;
+hp2.width = healthE1+healthE1;
+hp3.width = healthE2+healthE2;
+hp4.width = healthE3+healthE3;
+hp5.width = healthE4+healthE4;
+hp6.width = healthE5+healthE5;
+
 
 if(playerState === 1 && player.isTouching(enymy1)){
   playerState = 0;
@@ -262,6 +300,41 @@ hp1.x -= 5;
 score -= 100;
 } 
 
+if(playerState === 1 && player.isTouching(enymy2)){
+  playerState = 0;
+  enymy1.x += 50;
+  healthE1 -= 5;
+  hp2.x += 5;
+  score += 100;
+  }
+
+if(playerState === 2 && player.isTouching(enymy2)){
+  playerState = 0;
+  enymy1.x += 50;
+  healthE1 -= 10;
+  hp2.x += 10;
+  score += 200;
+}
+
+if(playerState === 3 && player.isTouching(enymy2)){
+  playerState = 0;
+  enymy1.x += 50;
+  enymy1.addAnimation(enymy1KickImg);
+  healthE1 -= 20;
+  hp2.x += 20;
+  score += 500;
+}
+
+  if(playerState === 0 && player.isTouching(enymy2)){
+    playerState = 0;
+  player.x -= 50;
+enymy1State = 2;
+playerState = 0;
+healthP -= 5;
+hp1.x -= 5;
+score -= 100;
+} 
+
 if(enymy1State === 0){
   //enymy1.visible = true;
   enymy1.addImage(enymy1Start);
@@ -285,6 +358,31 @@ if(enymy1State === 4){
 
 if(enymy1State === 5){
   enymy1.addAnimation(enymy1WinImg);
+}
+
+if(enymy2State === 0){
+  //enymy1.visible = true;
+  enymy2.addImage(enymy1Start);
+}
+
+if(enymy2State === 1){
+  enymy2.addAnimation(enymy1PunchImg);
+}
+
+if(enymy2State === 2){
+  enymy2.addAnimation(enymy1KickImg);
+}
+
+if(enymy2State === 3){
+  enymy2.addAnimation(enymy1SmashImg);
+}
+
+if(enymy2State === 4){
+  enymy2.addAnimation(enymy1DownImg);
+}
+
+if(enymy2State === 5){
+  enymy2.addAnimation(enymy1WinImg);
 }
 
 if(playerState === 0){
@@ -342,6 +440,9 @@ enymy1State = 0;
 
 score = 0;
 
+if(keyDown("p")){
+playBClick();
+}
 //enymy1.x = displayWidth-500;
   //enymy1.visible = false;
  image(backimageImg1,displayWidth/6-280,displayHeight/6-130,displayWidth,displayHeight-20);
@@ -533,9 +634,8 @@ if(gameState === 7){
 }
 
 if(gameState === 8){
-  textSize = 20;
   text("you win",displayWidth/2,displayHeight/2);
-  lockState = 1;
+  textSize(20);
 }
 
 if(healthE1 <= 0){
@@ -555,6 +655,12 @@ if(healthP <= 0){
 
 if(healthE1 <= 0 && score >= 2000){
   gameState = 8;
+  lockState = 1;
+}
+
+if(healthE2 <= 0 && score >= 2000){
+  gameState = 8;
+  lockState = 2;
 }
 
 playB.mousePressed(()=>{
