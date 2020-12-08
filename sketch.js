@@ -1,4 +1,4 @@
-var quitB,playB,punchB,kickB,smashB,jumpPunchB,fightE1B,fightE2B,fightE3B,fightE4B,fightE5B,start1B,start2B,start3B,start4B,start5B;
+var quitB,playB,punchB,kickB,smashB,jumpPunchB,fightE1B,fightE2B,fightE3B,fightE4B,fightE5B,start1B,start2B,start3B,start4B,start5B,nextB;
 var playerDownImg,playerFaceImg,playerKnockImg;
 var lock1,lock2,lock3,lock4,lockOpen,key;
 var lock1Img,lockOpenImg,keyImg;
@@ -16,6 +16,7 @@ var healthE3 = 100;
 var healthE4 = 100;
 var healthE5 = 100;
 var score = 0;
+var end = 0;
 
 var healthSpriteP,healthSpriteE1,healthSpriteE2,healthSpriteE3,healthSpriteE4,healthSpriteE5,healthImg;
 
@@ -72,6 +73,17 @@ enymy2PunchImg = loadAnimation("image/enymy/enymy2/enymyPunch/enymy1.png","image
 enymy2SmashImg = loadAnimation("image/enymy/enymy2/enymySmash/enymy1.PNG","image/enymy/enymy2/enymySmash/enymy2.PNG","image/enymy/enymy2/enymySmash/enymy3.PNG","image/enymy/enymy2/enymySmash/enymy4.PNG","image/enymy/enymy2/enymySmash/enymy5.PNG","image/enymy/enymy2/enymySmash/enymy6.PNG","image/enymy/enymy2/enymySmash/enymy7.PNG")
 enymy2WinImg = loadAnimation("image/enymy/enymy2/enymyWin/enymy1.PNG","image/enymy/enymy2/enymyWin/enymy2.PNG","image/enymy/enymy2/enymyWin/enymy3.PNG","image/enymy/enymy2/enymyWin/enymy4.PNG")
 
+enymy3KickImg = loadAnimation("image/enymy/enymy3/enymyKick/enymy1.png","image/enymy/enymy3/enymyKick/enymy2.png","image/enymy/enymy3/enymyKick/enymy3.png");
+enymy3PunchImg = loadAnimation("image/enymy/enymy3/enymyPunch/enymy1.png","image/enymy/enymy3/enymyPunch/enymy2.png","image/enymy/enymy3/enymyPunch/enymy3.png");
+enymy3SmashImg = loadAnimation("image/enymy/enymy3/enymySmash/enymy1.png","image/enymy/enymy3/enymySmash/enymy2.png","image/enymy/enymy3/enymySmash/enymy3.png");
+
+enymy4KickImg = loadAnimation("image/enymy/enymy4/enymyKick/enymy1.png","image/enymy/enymy4/enymyKick/enymy2.png","image/enymy/enymy4/enymyKick/enymy3.png");
+enymy4PunchImg = loadAnimation("image/enymy/enymy4/enymyPunch/enymy1.png","image/enymy/enymy4/enymyPunch/enymy2.png","image/enymy/enymy4/enymyPunch/enymy3.png");
+enymy4SmashImg = loadAnimation("image/enymy/enymy4/enymySmash/enymy1.png","image/enymy/enymy4/enymySmash/enymy2.png","image/enymy/enymy4/enymySmash/enymy3.png");
+
+enymy5PunchImg = loadAnimation("image/enymy/enymy5/enymyPunch/enymy1.png","image/enymy/enymy5/enymyPunch/enymy2.png","image/enymy/enymy5/enymyPunch/enymy3.png");
+enymy5SmashImg = loadAnimation("image/enymy/enymy5/enymySmash/enymy1.png","image/enymy/enymy5/enymySmash/enymy2.png","image/enymy/enymy5/enymySmash/enymy3.png");
+
 playerStart = loadAnimation("image/player/punchPlayer/punch1.png","image/player/punchPlayer/punch1.png");
 //enymy1Start = loadAnimation("image/enymy/enymy1/enymyPunch/enymy1.png","image/enymy/enymy1/enymyPunch/enymy2.png");
 
@@ -96,6 +108,9 @@ healthImg = loadImage("image/hp.png");
 
 enymy1Start = loadImage("image/enymy/enymy1/enymyPunch/enymy1.png");
 enymy2Start = loadImage("image/enymy/enymy2/enymyPunch/enymy1.png");
+enymy3Start = loadImage("image/enymy/enymy3/enymyPunch/enymy1.png");
+enymy4Start = loadImage("image/enymy/enymy4/enymyPunch/enymy1.png");
+enymy5Start = loadImage("image/enymy/enymy5/enymyPunch/enymy1.png");
 
 }
 
@@ -154,6 +169,10 @@ function setup() {
 
   start5B = createButton("Start");
   start5B.position(displayWidth-100,displayHeight-50);
+
+  nextB = createButton("Next");
+  nextB.position(displayWidth-100,displayHeight-50);
+  
   //backimage = createSprite(displayWidth/2,displayHeight/2);
   //backimage.
 
@@ -199,8 +218,14 @@ key = createSprite(400,200,20,20);
 key.addImage(keyImg);
 
 enymy1 = createSprite(displayWidth-500,800,20,20);
-enymy2 = createSprite(displayWidth-500,800,20,20);
-enymy2.addImage(enymy2Start);
+enymy2 = createSprite(displayWidth-500,495,20,20);
+enymy3 = createSprite(displayWidth-600,495,20,20);
+enymy4 = createSprite(displayWidth-500,495,20,20);
+enymy5 = createSprite(displayWidth-400,495,20,20);
+//enymy3.addImage(enymy3Start);
+//enymy4.addImage(enymy4Start);
+//enymy5.addImage(enymy5Start);
+//enymy2.addImage(enymy2Start);
 //enymy1.addImage(enymy1Start);
 
 healthSpriteP = createSprite(150,100,20,20);
@@ -302,38 +327,145 @@ score -= 100;
 
 if(playerState === 1 && player.isTouching(enymy2)){
   playerState = 0;
-  enymy1.x += 50;
-  healthE1 -= 5;
-  hp2.x += 5;
+  enymy2.x += 25;
+  healthE2 -= 3;
+  hp3.x += 3;
   score += 100;
   }
 
 if(playerState === 2 && player.isTouching(enymy2)){
   playerState = 0;
-  enymy1.x += 50;
-  healthE1 -= 10;
-  hp2.x += 10;
+  enymy2.x += 25;
+  healthE2 -= 7;
+  hp3.x += 7;
   score += 200;
 }
 
 if(playerState === 3 && player.isTouching(enymy2)){
   playerState = 0;
-  enymy1.x += 50;
-  enymy1.addAnimation(enymy1KickImg);
-  healthE1 -= 20;
-  hp2.x += 20;
+  enymy2.x += 25;
+  enymy2.addAnimation("enymy2",enymy2KickImg);
+  healthE2 -= 15;
+  hp3.x += 15;
   score += 500;
 }
 
   if(playerState === 0 && player.isTouching(enymy2)){
     playerState = 0;
   player.x -= 50;
-enymy1State = 2;
+enymy2State = 2;
 playerState = 0;
 healthP -= 5;
 hp1.x -= 5;
 score -= 100;
 } 
+
+if(playerState === 1 && player.isTouching(enymy3)){
+  playerState = 0;
+  enymy3.x += 25;
+  healthE3 -= 2;
+  hp4.x += 2;
+  score += 100;
+  }
+
+if(playerState === 2 && player.isTouching(enymy3)){
+  playerState = 0;
+  enymy3.x += 25;
+  healthE3 -= 5;
+  hp4.x += 5;
+  score += 200;
+}
+
+if(playerState === 3 && player.isTouching(enymy3)){
+  playerState = 0;
+  enymy3.x += 25;
+  enymy3.addAnimation("enymy3",enymy3KickImg);
+  healthE3 -= 10;
+  hp4.x += 10;
+  score += 500;
+}
+
+  if(playerState === 0 && player.isTouching(enymy3)){
+    playerState = 0;
+  player.x -= 50;
+enymy3State = 2;
+playerState = 0;
+healthP -= 6;
+hp1.x -= 6;
+score -= 100;
+} 
+
+if(playerState === 1 && player.isTouching(enymy4)){
+  playerState = 0;
+  enymy4.x += 25;
+  healthE4 -= 1.5;
+  hp5.x += 1.5;
+  score += 100;
+  }
+
+if(playerState === 2 && player.isTouching(enymy4)){
+  playerState = 0;
+  enymy4.x += 25;
+  healthE4 -= 4;
+  hp5.x += 4;
+  score += 200;
+}
+
+if(playerState === 3 && player.isTouching(enymy4)){
+  playerState = 0;
+  enymy4.x += 25;
+  enymy4.addAnimation("enymy4",enymy4KickImg);
+  healthE4 -= 8;
+  hp5.x += 8;
+  score += 500;
+}
+
+  if(playerState === 0 && player.isTouching(enymy4)){
+    playerState = 0;
+  player.x -= 50;
+enymy4State = 2;
+playerState = 0;
+healthP -= 7;
+hp1.x -= 7;
+score -= 100;
+} 
+
+if(playerState === 1 && player.isTouching(enymy5)){
+  playerState = 0;
+  enymy5.x += 25;
+  healthE5 -= 1;
+  hp6.x += 1;
+  score += 100;
+  }
+
+if(playerState === 2 && player.isTouching(enymy5)){
+  playerState = 0;
+  enymy5.x += 25;
+  healthE5 -= 3;
+  hp6.x += 3;
+  score += 200;
+}
+
+if(playerState === 3 && player.isTouching(enymy5)){
+  playerState = 0;
+  enymy5.x += 25;
+  enymy5.addAnimation("enymy5",enymy5PunchImg);
+  healthE5 -= 5;
+  hp6.x += 5;
+  score += 500;
+}
+
+  if(playerState === 0 && player.isTouching(enymy5)){
+    playerState = 0;
+  player.x -= 50;
+enymy5State = 2;
+playerState = 0;
+healthP -= 5;
+hp1.x -= 5;
+score -= 100;
+} 
+
+
 
 if(enymy1State === 0){
   //enymy1.visible = true;
@@ -341,49 +473,97 @@ if(enymy1State === 0){
 }
 
 if(enymy1State === 1){
-  enymy1.addAnimation(enymy1PunchImg);
+  enymy1.addAnimation("enymy1",enymy1PunchImg);
 }
 
 if(enymy1State === 2){
-  enymy1.addAnimation(enymy1KickImg);
+  enymy1.addAnimation("enymy1",enymy1KickImg);
 }
 
 if(enymy1State === 3){
-  enymy1.addAnimation(enymy1SmashImg);
+  enymy1.addAnimation("enymy1",enymy1SmashImg);
 }
 
 if(enymy1State === 4){
-  enymy1.addAnimation(enymy1DownImg);
+  enymy1.addAnimation("enymy1",enymy1DownImg);
 }
 
 if(enymy1State === 5){
-  enymy1.addAnimation(enymy1WinImg);
+  enymy1.addAnimation("enymy1",enymy1WinImg);
 }
 
 if(enymy2State === 0){
   //enymy1.visible = true;
-  enymy2.addImage(enymy1Start);
+  enymy2.addImage(enymy2Start);
 }
 
 if(enymy2State === 1){
-  enymy2.addAnimation(enymy1PunchImg);
+  enymy2.addAnimation("enymy2",enymy2PunchImg);
 }
 
 if(enymy2State === 2){
-  enymy2.addAnimation(enymy1KickImg);
+  enymy2.addAnimation("enymy2",enymy2KickImg);
 }
 
 if(enymy2State === 3){
-  enymy2.addAnimation(enymy1SmashImg);
+  enymy2.addAnimation("enymy2",enymy2SmashImg);
 }
 
 if(enymy2State === 4){
-  enymy2.addAnimation(enymy1DownImg);
+  enymy2.addAnimation("enymy2",enymy2DownImg);
 }
 
 if(enymy2State === 5){
-  enymy2.addAnimation(enymy1WinImg);
+  enymy2.addAnimation("enymy2",enymy2WinImg);
 }
+
+if(enymy3State === 0){
+  //enymy1.visible = true;
+  enymy3.addImage(enymy3Start);
+}
+
+if(enymy3State === 1){
+  enymy3.addAnimation("enymy3",enymy3PunchImg);
+}
+
+if(enymy3State === 2){
+  enymy3.addAnimation("enymy3",enymy3KickImg);
+}
+
+if(enymy3State === 3){
+  enymy3.addAnimation("enymy3",enymy3SmashImg);
+}
+
+if(enymy4State === 0){
+  //enymy1.visible = true;
+  enymy4.addImage(enymy4Start);
+}
+
+if(enymy4State === 1){
+  enymy4.addAnimation("enymy4",enymy4PunchImg);
+}
+
+if(enymy4State === 2){
+  enymy4.addAnimation("enymy4",enymy4KickImg);
+}
+
+if(enymy4State === 3){
+  enymy4.addAnimation("enymy4",enymy4SmashImg);
+}
+
+if(enymy5State === 0){
+  //enymy1.visible = true;
+  enymy5.addImage(enymy5Start);
+}
+
+if(enymy5State === 1){
+  enymy5.addAnimation("enymy5",enymy5PunchImg);
+}
+
+if(enymy5State === 2){
+  enymy5.addAnimation("enymy5",enymy5SmashImg);
+}
+
 
 if(playerState === 0){
   player.addAnimation("player",playerStart);
@@ -404,36 +584,63 @@ if(playerState === 6){
 
 if(gameState === 0){
   playB.show();
+
   punchB.hide();
   kickB.hide();
   smashB.hide();
+
+  nextB.hide();
+
   fightE1B.hide();
   fightE2B.hide();
   fightE3B.hide();
   fightE4B.hide();
   fightE5B.hide();
+
   start1B.hide();
   start2B.hide();
   start3B.hide();
   start4B.hide();
   start5B.hide();
+
   player.visible = false;
+
   enymy1O.visible = false;
   enymy2O.visible = false;
   enymy3O.visible = false;
   enymy4O.visible = false;
   enymy5O.visible = false;
+
   lock1.visible = false;
   lock2.visible = false;
   lock3.visible = false;
   lock4.visible = false;
+
   lockOpen.visible = false;
+
   key.visible = false;
+
   enymy1.visible = false;
+  enymy2.visible = false;
+  enymy3.visible = false;
+  enymy4.visible = false;
+  //enymy5.visible = false;
+
   hp1.visible = false;
   hp2.visible = false;
   healthSpriteE1.visible = false;
-  healthSpriteP.visible = false; 
+  healthSpriteP.visible = false;
+
+  hp3.visible = false;
+  hp4.visible = false;
+  healthSpriteE2.visible = false;
+  healthSpriteE3.visible = false;
+
+  hp5.visible = false;
+  hp6.visible = false;
+  healthSpriteE4.visible = false;
+  healthSpriteE5.visible = false; 
+
 //player.x = 500;
 playerState = 0;
 enymy1State = 0;
@@ -443,8 +650,10 @@ score = 0;
 if(keyDown("p")){
 playBClick();
 }
+
 //enymy1.x = displayWidth-500;
   //enymy1.visible = false;
+
  image(backimageImg1,displayWidth/6-280,displayHeight/6-130,displayWidth,displayHeight-20);
 }
 
@@ -544,13 +753,24 @@ hp1.visible = true;
 hp2.visible = true;
 healthSpriteE1.visible = true;
 healthSpriteP.visible = true;
-text("score : "+score,displayWidth/2,200);
 textSize("32");
+text("score : "+score,displayWidth/2,200);
+if(enymy1.x - player.x > 200){
+enymy1.x -= 10;
+}else if (enymy1.x - player.x > 50){
+  enymy1.x -= 0.5;
+}
+
+
+}else{
+  // player.y = 9000;
+  enymy1.y = 8000;
 }
 
 if(gameState === 3){
-  player.visible = true;
-  //enymy2.visible = true;
+   player.visible = true;
+  enymy2.visible = true;
+  enymy2.y = 480;
   player.y = 480;
   punchB.show();
   kickB.show();
@@ -562,12 +782,25 @@ enymy2O.visible = false;
 enymy3O.visible = false;
 enymy4O.visible = false;
 enymy5O.visible = false;
+hp1.visible = true;
+  hp3.visible = true;
+  healthSpriteE2.visible = true;
+  healthSpriteP.visible = true;
+  if(enymy2.x - player.x > 200){
+    enymy2.x -= 10;
+    }else if (enymy2.x - player.x > 50){
+      enymy2.x -= 0.5;
+    }
+}else{
+  // player.y = 9000;
+  enymy2.y = 8000;
 }
 
 if(gameState === 4){
   player.visible = true;
-  //enymy3.visible = true;
+  enymy3.visible = true;
   player.y = 700;
+  enymy3.y = 700;
   punchB.show();
   kickB.show();
   smashB.show();
@@ -578,11 +811,24 @@ if(gameState === 4){
   enymy3O.visible = false;
   enymy4O.visible = false;
   enymy5O.visible = false;
+  hp1.visible = true;
+  hp4.visible = true;
+  healthSpriteE3.visible = true;
+  healthSpriteP.visible = true;
+  if(enymy3.x - player.x > 200){
+    enymy3.x -= 10;
+    }else if (enymy3.x - player.x > 50){
+      enymy3.x -= 0.5;
+    }
+}else{
+  // player.y = 9000;
+  enymy3.y = 8000;
 }
 
 if(gameState === 5){
   player.visible = true;
-  //enymy4.visible = true;
+  enymy4.visible = true;
+  enymy4.y = 700;
   player.y = 700;
   punchB.show();
   kickB.show();
@@ -594,11 +840,24 @@ if(gameState === 5){
   enymy3O.visible = false;
   enymy4O.visible = false;
   enymy5O.visible = false;
+  hp1.visible = true;
+  hp5.visible = true;
+  healthSpriteE4.visible = true;
+  healthSpriteP.visible = true;
+  if(enymy4.x - player.x > 200){
+    enymy4.x -= 10;
+    }else if (enymy4.x - player.x > 50){
+      enymy4.x -= 0.5;
+    }
+}else{
+  // player.y = 9000;
+  enymy4.y = 8000;
 }
 
 if(gameState === 6){
   player.visible = true;
-  //enymy5.visible = true;
+  enymy5.visible = true;
+  enymy5.y = 700;
   player.y = 700;
   punchB.show();
   kickB.show();
@@ -610,41 +869,83 @@ if(gameState === 6){
   enymy3O.visible = false;
   enymy4O.visible = false;
   enymy5O.visible = false;
+  hp1.visible = true;
+  hp6.visible = true;
+  healthSpriteE5.visible = true;
+  healthSpriteP.visible = true;
+  if(enymy5.x - player.x > 200){
+    enymy5.x -= 10;
+    }else if (enymy5.x - player.x > 50){
+      enymy5.x -= 0.5;
+    }
+}else{
+  // player.y = 9000;
+  enymy5.y = 8000;
 }
 
 if(gameState === 7){
   text("you lost",displayWidth/2,displayHeight/2);
-  player.visible = false;
-  enymy1.visible = false;
-  countDown1 = 30;
-  countDown2 = 30;
-  countDown3 = 30;
-  countDown4 = 30;
-  countDown5 = 30;
-  pauseState = 30;
-  player.x = 500;
-  player.y = 500;
-  enymy1.x = displayWidth-player.x;
-  healthE1 = 100;
-  healthP = 100;
-  hp2.visible = true;
-  hp2.x = displayWidth-137;
-  hp1.x = 165;
-  gameState = 0;
+  quitBClick();
 }
 
 if(gameState === 8){
+  textSize(50);
   text("you win",displayWidth/2,displayHeight/2);
-  textSize(20);
+  smashB.hide();
+  punchB.hide();
+  kickB.hide();
+  nextB.show();
+}
+
+if(gameState === 9){
+  textSize(32);
+  text("you win all match",200,200);
+  end -= 1;
+  if(end <= -500){
+lockState = 4;
+gameState = 0;
+  }
 }
 
 if(healthE1 <= 0){
-enymy1State.visible = false;
-playerState.visible = false;
-hp2.visible = false;
-gameState = 7;
-//gameState = 0;
-}
+  //enymy1State.visible = false;
+  //playerState.visible = false;
+  //hp2.visible = false;
+  gameState = 7;
+  //gameState = 0;
+  }
+
+if(healthE2 <= 0){
+  //enymy1State.visible = false;
+  //playerState.visible = false;
+  //hp2.visible = false;
+  gameState = 7;
+  //gameState = 0;
+  }
+
+if(healthE3 <= 0){
+  //enymy1State.visible = false;
+  //playerState.visible = false;
+  //hp2.visible = false;
+  gameState = 7;
+  //gameState = 0;
+  }
+
+if(healthE4 <= 0){
+  //enymy1State.visible = false;
+  //playerState.visible = false;
+  //hp2.visible = false;
+  gameState = 7;
+  //gameState = 0;
+  }
+
+if(healthE5 <= 0){
+  //enymy1State.visible = false;
+  //playerState.visible = false;
+  //hp2.visible = false;
+  gameState = 7;
+  //gameState = 0;
+  }
 
 if(healthP <= 0){
   enymy1State.visible = false;
@@ -653,15 +954,42 @@ if(healthP <= 0){
   gameState = 7;
 }
 
-if(healthE1 <= 0 && score >= 2000){
+if(healthE1 <= 0 && score >= 1000){
   gameState = 8;
-  lockState = 1;
+  if(lockState === 0){
+    lockState = 1;
+    }
 }
 
 if(healthE2 <= 0 && score >= 2000){
   gameState = 8;
+  if(lockState === 1){
   lockState = 2;
+  }
 }
+
+if(healthE3 <= 0 && score >= 4000){
+  gameState = 8;
+  if(lockState === 2){
+    lockState = 3;
+    }
+  }
+
+if(healthE4 <= 0 && score >= 6000){
+  gameState = 8;
+  if(lockState === 3){
+    lockState = 4;
+    }
+}
+
+if(healthE5 <= 0 && score >= 8000){
+  gameState = 8;
+  if(lockState === 4){
+    lockState = 5;
+    }
+}
+
+
 
 playB.mousePressed(()=>{
   playBClick();
@@ -740,19 +1068,14 @@ smashB.mousePressed(()=>{
 });
 
 quitB.mousePressed(()=>{
-  gameState = 0;
-  countDown1 = 30;
-  countDown2 = 30;
-  countDown3 = 30;
-  countDown4 = 30;
-  countDown5 = 30;
-  pauseState = 30;
-  player.x = 500;
-  player.y = 500;
-  enymy1.x = displayWidth-player.x;
-  healthE1 = 100;
-  healthP = 100;
+  quitBClick();
 })
+
+
+nextB.mousePressed(()=>{
+  nextBClick();
+});
+
 
   drawSprites();
 }
@@ -762,37 +1085,42 @@ function playBClick(){
   gameState = 1;
   playB.hide();
   if(lockState === 0){
-  lock1.visible = true;
-  lock2.visible = true;
-  lock3.visible = true;
-  lock4.visible = true;
-  text("score 2000 to unlock next level",enymy1O.x,enymy1O.y-100);
-  textColor = "red";
-}
-  if(lockState === 1){
-    fightE2B.show();
+    lock1.visible = true;
     lock2.visible = true;
-  lock3.visible = true;
-  lock4.visible = true;
-  }
-  if(lockState === 2){
-    fightE2B.show();
-    fightE3B.show();
-  lock3.visible = true;
-  lock4.visible = true;
-  }
-  if(lockState === 3){
-    fightE4B.show();
-    fightE2B.show();
-    fightE3B.show();
+    lock3.visible = true;
     lock4.visible = true;
+    text("score 2000 to unlock next level",enymy1O.x,enymy1O.y-100);
+    textColor = "red";
   }
-  if(lockState === 4){
-    fightE5B.show();
-    fightE4B.show();
-    fightE2B.show();
-    fightE3B.show();
-  }
+    if(lockState === 1){
+      fightE2B.show();
+      lock2.visible = true;
+    lock3.visible = true;
+    lock4.visible = true;
+    }
+    if(lockState === 2){
+      fightE2B.show();
+      fightE3B.show();
+    lock3.visible = true;
+    lock4.visible = true;
+    }
+    if(lockState === 3){
+      fightE4B.show();
+      fightE2B.show();
+      fightE3B.show();
+      lock4.visible = true;
+    }
+    if(lockState === 4){
+      fightE5B.show();
+      fightE4B.show();
+      fightE2B.show();
+      fightE3B.show();
+    }
+
+    if(lockState === 5){
+      gameState=9; 
+    }
+
 fightE1B.show();
 countDown1 = 30;
 countDown2 = 30;
@@ -984,6 +1312,9 @@ function Start5BClick(){
 function punchBClick(){
   playerState = 1;
   player.addAnimation("player",playerPunchImg);
+
+  enymy2State = 1;
+  //enymy2.addAnimation("enymy2",enymy2PunchImg);
   
   //if(playerState === 1){
   //p//layer.visible = false;
@@ -1039,4 +1370,40 @@ function Move(){
 }else if(player.x <= 10){
   player.x = 20;
 }
+}
+
+function quitBClick(){
+  gameState = 0;
+  countDown1 = 30;
+  countDown2 = 30;
+  countDown3 = 30;
+  countDown4 = 30;
+  countDown5 = 30;
+  pauseState = 30;
+  player.x = 500;
+  player.y = 500;
+  //enymy1.x = displayWidth-player.x;
+  healthE1 = 100;
+  healthP = 100;
+  //healthE1 = 100;
+  healthE2 = 100;
+  healthE3 = 100;
+  healthE4 = 100;
+  healthE5 = 100;
+  hp1.x = 165;
+  hp2.x = displayWidth-137;
+  hp3.x = displayWidth-137;
+  hp4.x = displayWidth-137;
+  hp5.x = displayWidth-137;
+  hp6.x = displayWidth-137;
+
+  enymy1.x = displayWidth-500;
+  enymy2.x = displayWidth-500;
+  enymy3.x = displayWidth-500;
+  enymy4.x = displayWidth-500;
+  enymy5.x = displayWidth-500;
+}
+
+function nextBClick(){
+  quitBClick();
 }
