@@ -3,6 +3,10 @@ var playerDownImg,playerFaceImg,playerKnockImg;
 var lock1,lock2,lock3,lock4,lockOpen,key;
 var lock1Img,lockOpenImg,keyImg;
 var blueBack,replay;
+var gold,silver,bronze;
+var goldImg,silverImg,bronzeImg;
+var A1,A2,A3,A1Img,A2Img,A3Img,A4Img,A5Img,A6Img,A7Img;
+var gameName;
 
 var countDown1 = 30;
 var countDown2 = 30;
@@ -88,8 +92,8 @@ enymy5SmashImg = loadAnimation("image/enymy/enymy5/enymySmash/enymy1.png","image
 playerStart = loadAnimation("image/player/punchPlayer/punch1.png","image/player/punchPlayer/punch1.png");
 //enymy1Start = loadAnimation("image/enymy/enymy1/enymyPunch/enymy1.png","image/enymy/enymy1/enymyPunch/enymy2.png");
 
-backimageImg1 = loadImage("image/background/running background.webp");
-backimageImg2 = loadImage("image/background/beckground.gif");
+backimageImg2 = loadImage("image/background/background6.jpg");
+backimageImg1 = loadImage("image/background/beckground.gif");
 backimageImg3 = loadImage("image/background/background1.jpg");
 backimageImg4 = loadImage("image/background/background2.jpg");
 backimageImg5 = loadImage("image/background/background3.jpg");
@@ -113,10 +117,25 @@ enymy3Start = loadImage("image/enymy/enymy3/enymyPunch/enymy1.png");
 enymy4Start = loadImage("image/enymy/enymy4/enymyPunch/enymy1.png");
 enymy5Start = loadImage("image/enymy/enymy5/enymyPunch/enymy1.png");
 
+goldImg = loadImage("image/medals/medal1.jpg");
+silverImg = loadImage("image/medals/medal2.jpg");
+bronzeImg = loadImage("image/medals/medal3.jpg");
+
+A1Img = loadSound('image/audio/kick.mp3');
+A2Img = loadSound('image/audio/punch.wav');
+A3Img = loadSound('image/audio/smash.wav');
+A4Img = loadSound('image/audio/lose.wav');
+A5Img = loadSound('image/audio/goldC.wav');
+A7Img = loadSound('image/audio/silverC.wav');
+A6Img = loadSound('image/audio/bronzeC.wav');
 }
 
 function setup() {
   createCanvas(displayWidth,displayHeight);
+
+gameName = createButton("SPK Power");
+gameName.position(displayWidth/2-100,displayHeight/4);
+gameName.style("font-size","60px");
 
   quitB = createButton("Quit");
   quitB.position(5,15);
@@ -289,6 +308,15 @@ hp5.shapeColor = "red";
 
 hp6 = createSprite(displayWidth-137,90,hpE1,30);
 hp6.shapeColor = "red";
+
+gold = createSprite(displayWidth/2,displayHeight/2);
+gold.addImage(goldImg);
+
+silver = createSprite(displayWidth/2,displayHeight/2);
+silver.addImage(silverImg);
+
+bronze = createSprite(displayWidth/2,displayHeight/2);
+bronze.addImage(bronzeImg);
 
 }
 
@@ -483,6 +511,7 @@ score -= 100;
 
 if(gameState === 0){
   playB.show();
+  gameName.show();
 
   punchB.hide();
   kickB.hide();
@@ -504,6 +533,13 @@ if(gameState === 0){
   start4B.hide();
   start5B.hide();
 
+  A1Img.pause();
+  A2Img.pause();
+  A3Img.pause();
+  A4Img.pause();
+  A5Img.pause();
+  A6Img.pause();
+
   player.visible = false;
 
   enymy1O.visible = false;
@@ -518,6 +554,10 @@ if(gameState === 0){
   lock4.visible = false;
 
   lockOpen.visible = false;
+
+  bronze.visible = false;
+  silver.visible = false;
+  gold.visible = false;
 
   key.visible = false;
 
@@ -911,6 +951,7 @@ if(gameState === 6){
 if(gameState === 7){
   textSize(50);
   text("you lost",displayWidth/2,displayHeight/2);
+  
   smashB.hide();
   punchB.hide();
   kickB.hide();
@@ -928,6 +969,8 @@ if(gameState === 7){
   healthSpriteP.visible = false;
   nextB.hide();
   replay.show();
+  A4Img.play();
+  
 }
 
 if(gameState === 8){
@@ -963,11 +1006,86 @@ fightE1B.hide();
   }
 }
 
+if(gameState === 10){
+   gold.visible = true;
+   textSize(32);
+   text("You Win GOLD Medal",displayWidth/2-150,quitB.y+100);
+   A5Img.play();
+   smashB.hide();
+  punchB.hide();
+  kickB.hide();
+  hp1.visible = false;
+  hp2.visible = false;
+  hp3.visible = false;
+  hp4.visible = false;
+  hp5.visible = false;
+  hp6.visible = false;
+  healthSpriteE1.visible = false;
+  healthSpriteE2.visible = false;
+  healthSpriteE3.visible = false;
+  healthSpriteE4.visible = false;
+  healthSpriteE5.visible = false;
+  healthSpriteP.visible = false;
+  nextB.show();
+  player.visible = false;
+
+}
+
+if(gameState === 11){
+  silver.visible = true;
+  textSize(32);
+  text("You Win SILVER Medal",displayWidth/2-150,quitB.y+100);
+  A6Img.play();
+  smashB.hide();
+  punchB.hide();
+  kickB.hide();
+  hp1.visible = false;
+  hp2.visible = false;
+  hp3.visible = false;
+  hp4.visible = false;
+  hp5.visible = false;
+  hp6.visible = false;
+  healthSpriteE1.visible = false;
+  healthSpriteE2.visible = false;
+  healthSpriteE3.visible = false;
+  healthSpriteE4.visible = false;
+  healthSpriteE5.visible = false;
+  healthSpriteP.visible = false;
+  nextB.show();
+  player.visible = false;
+
+}
+
+if(gameState === 12){
+  bronze.visible = true;
+  textSize(32);
+  text("You Win BRONZE Medal",displayWidth/2-150,quitB.y+100);
+  A7Img.play();
+  smashB.hide();
+  punchB.hide();
+  kickB.hide();
+  hp1.visible = false;
+  hp2.visible = false;
+  hp3.visible = false;
+  hp4.visible = false;
+  hp5.visible = false;
+  hp6.visible = false;
+  healthSpriteE1.visible = false;
+  healthSpriteE2.visible = false;
+  healthSpriteE3.visible = false;
+  healthSpriteE4.visible = false;
+  healthSpriteE5.visible = false;
+  healthSpriteP.visible = false;
+  nextB.show();
+  player.visible = false;
+
+}
+
 if(healthE1 <= 0){
   //enymy1State.visible = false;
   //playerState.visible = false;
   //hp2.visible = false;
-  gameState = 8;
+  gameState = 12;
   //gameState = 0;
   }
 
@@ -975,7 +1093,7 @@ if(healthE2 <= 0){
   //enymy1State.visible = false;
   //playerState.visible = false;
   //hp2.visible = false;
-  gameState = 8;
+  gameState = 12;
   //gameState = 0;
   }
 
@@ -983,7 +1101,7 @@ if(healthE3 <= 0){
   //enymy1State.visible = false;
   //playerState.visible = false;
   //hp2.visible = false;
-  gameState = 8;
+  gameState = 12;
   //gameState = 0;
   }
 
@@ -991,7 +1109,7 @@ if(healthE4 <= 0){
   //enymy1State.visible = false;
   //playerState.visible = false;
   //hp2.visible = false;
-  gameState = 8;
+  gameState = 12;
   //gameState = 0;
   }
 
@@ -999,7 +1117,7 @@ if(healthE5 <= 0){
   //enymy1State.visible = false;
   //playerState.visible = false;
   //hp2.visible = false;
-  gameState = 8;
+  gameState = 12;
   //gameState = 0;
   }
 
@@ -1008,40 +1126,84 @@ if(healthP <= 0){
 }
 
 if(healthE1 <= 0 && score >= 1000){
-  gameState = 8;
+  
   if(lockState === 0){
     lockState = 1;
     }
+    gameState = 11;
 }
 
 if(healthE2 <= 0 && score >= 2000){
-  gameState = 8;
+  
   if(lockState === 1){
   lockState = 2;
   }
+  gameState = 11;
 }
 
 if(healthE3 <= 0 && score >= 4000){
-  gameState = 8;
+  
   if(lockState === 2){
     lockState = 3;
     }
+    gameState = 11;
   }
 
 if(healthE4 <= 0 && score >= 6000){
-  gameState = 8;
+  
   if(lockState === 3){
     lockState = 4;
     }
+    gameState = 11;
 }
 
 if(healthE5 <= 0 && score >= 8000){
-  gameState = 8;
+  
   if(lockState === 4){
     lockState = 5;
     }
+    gameState = 11;
 }
 
+if(healthE1 <= 0 && score >= 2000){
+  
+  if(lockState === 0){
+    lockState = 1;
+    }
+    gameState = 10;
+}
+
+if(healthE2 <= 0 && score >= 4000){
+  
+  if(lockState === 1){
+  lockState = 2;
+  }
+  gameState = 10;
+}
+
+if(healthE3 <= 0 && score >= 6000){
+  
+  if(lockState === 2){
+    lockState = 3;
+    }
+    gameState = 10;
+  }
+
+if(healthE4 <= 0 && score >= 8000){
+  
+  if(lockState === 3){
+    lockState = 4;
+    }
+    gameState = 10;
+}
+
+if(healthE5 <= 0 && score >= 10000){
+  
+  if(lockState === 4){
+    lockState = 5;
+    }
+    gameState = 10;
+}
 
 
 playB.mousePressed(()=>{
@@ -1136,6 +1298,7 @@ nextB.mousePressed(()=>{
 //image(variable Name, xposition,yposition,width,height);
 function playBClick(){
   gameState = 1;
+  gameName.hide();
   playB.hide();
   if(lockState === 0){
     lock1.visible = true;
@@ -1403,6 +1566,8 @@ function punchBClick(){
 //    pauseState = pauseState-1;
   //}
 //}
+
+A1Img.play();
 }
 
 function kickBClick(){
@@ -1418,6 +1583,7 @@ function kickBClick(){
 //    pauseState = pauseState-1;
   //}
 //}
+A2Img.play();
 }
 
 function smashBClick(){
@@ -1433,6 +1599,7 @@ function smashBClick(){
  // }//else{
  //   pauseState = pauseState-0.5;
   //
+  A3Img.play();
 }
 
 
@@ -1484,6 +1651,12 @@ function quitBClick(){
 
 function nextBClick(){
   quitBClick();
+  A1Img.pause();
+  A2Img.pause();
+  A3Img.pause();
+  A4Img.pause();
+  A5Img.pause();
+  A6Img.pause();
 }
 
 function kickSmashPunchkey(){
